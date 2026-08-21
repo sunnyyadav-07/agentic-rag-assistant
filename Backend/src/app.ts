@@ -1,6 +1,12 @@
 import express from "express";
 import { globalErrorHandler } from "./middlewares/errorHandler.middleware.js";
+import authRouter from "./routes/auth.routes.js";
+import cookieParser from "cookie-parser";
+import morgan from "morgan";
 const app = express();
-
-app.use(globalErrorHandler)
+app.use(express.json());
+app.use(cookieParser());
+app.use(morgan("dev"));
+app.use("/api/auth", authRouter);
+app.use(globalErrorHandler);
 export default app;
