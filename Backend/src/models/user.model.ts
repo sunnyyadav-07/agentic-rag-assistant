@@ -1,7 +1,8 @@
 import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
+import type { IUser } from "../types/user.types.js";
 
-const userSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema<IUser>(
   {
     name: {
       type: String,
@@ -22,6 +23,7 @@ const userSchema = new mongoose.Schema(
     },
     refreshToken: {
       type: String,
+      default: null,
     },
   },
   {

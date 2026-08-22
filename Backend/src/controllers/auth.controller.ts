@@ -4,6 +4,7 @@ import {
   registerService,
 } from "../services/auth.service.js";
 import type { AsyncControllerFn } from "../types/asyncControllerFn.js";
+import { sendResponse } from "../types/sendResponse.js";
 import { AppError } from "../utils/AppError.js";
 
 export const registerController: AsyncControllerFn = async (req, res, next) => {
@@ -22,13 +23,9 @@ export const registerController: AsyncControllerFn = async (req, res, next) => {
     secure: false,
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
-  res.status(201).json({
-    success: true,
-    message: "User registered successfully",
-    user: {
-      name: newUser.name,
-      email: newUser.email,
-    },
+  sendResponse(res, 201, true, "User registered successfully", {
+    email: newUser.email,
+    name: newUser.name,
   });
 };
 
@@ -46,25 +43,17 @@ export const loginController: AsyncControllerFn = async (req, res, next) => {
     secure: false,
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
-  res.status(200).json({
-    success: true,
-    message: "User loggedin successfully",
-    user: {
-      name: user.name,
-      email: user.email,
-    },
+  sendResponse(res, 200, true, "User loggedIn successfully", {
+    email: user.email,
+    name: user.name,
   });
 };
 
 export const getMeController: AsyncControllerFn = async (req, res, next) => {
   const user = req.user;
-  res.status(200).json({
-    success: true,
-    message: "User fetched successfully",
-    user: {
-      email: user.email,
-      name: user.name,
-    },
+  sendResponse(res, 200, true, "User fetched successfully", {
+    email: user.email,
+    name: user.name,
   });
 };
 
@@ -84,8 +73,5 @@ export const getAccessTokenController: AsyncControllerFn = async (
     secure: false,
     maxAge: 60 * 60 * 1000,
   });
-  res.status(200).json({
-    success: true,
-    message: "Access token generated",
-  });
+  sendResponse(res, 200, true, "Access token generated");
 };
