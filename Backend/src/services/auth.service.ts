@@ -1,12 +1,16 @@
 import userModel from "../models/user.model.js";
 import { AppError } from "../utils/AppError.js";
-import jwt from "jsonwebtoken";
+import jwt, { type JwtPayload } from "jsonwebtoken";
 import {
   generateAccessToken,
   generateRefreshToken,
 } from "../utils/generateTokens.js";
 import { config } from "../config/config.js";
-import type { LoginBody, RegisterBody } from "../types/user.types.js";
+import type {
+  DecodeJWT,
+  LoginBody,
+  RegisterBody,
+} from "../types/user.types.js";
 export const registerService = async (data: RegisterBody) => {
   const { name, email, password } = data;
   if (!name || !email || !password) {
@@ -51,7 +55,10 @@ export const loginService = async (data: LoginBody) => {
   return { accessToken, refreshToken, user: isExisted };
 };
 export const getAccessTokenService = async (refreshToken: string) => {
-  const decode = jwt.verify(refreshToken, config.JWT_REFRESH_SECRET);
+  const decode = jwt.verify(
+    refreshToken,
+    config.JWT_REFRESH_SECRET,
+  ) as DecodeJWT;
   if (!decode) {
     throw new AppError("Unauthorized request", 401);
   }

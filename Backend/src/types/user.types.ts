@@ -22,3 +22,8 @@ export interface JWTPayload {
   userId: string;
   email?: string;
 }
+export interface DecodeJWT {
+  id: string;
+  iat: number;
+  exp: number;
+}

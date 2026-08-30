@@ -4,7 +4,7 @@ import {
   registerService,
 } from "../services/auth.service.js";
 import type { AsyncControllerFn } from "../types/asyncControllerFn.js";
-import { sendResponse } from "../types/sendResponse.js";
+import { sendResponse } from "../utils/sendResponse.js";
 import { AppError } from "../utils/AppError.js";
 
 export const registerController: AsyncControllerFn = async (req, res, next) => {
