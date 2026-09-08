@@ -10,3 +10,19 @@ export interface LoadedFile {
   fileName: string;
   mimeType: string;
 }
+export interface Chunk {
+  content: string;
+  metadata: {
+    chunkIndex: number;
+    fileName: string;
+  };
+}
+
+export interface EmbeddedChunk {
+  content: string;
+  embedding: number[];
+  metadata: {
+    chunkIndex: number;
+    fileName: string;
+  };
+}

@@ -13,7 +13,7 @@ export const authenticateUser: AsyncControllerFn = async (req, res, next) => {
   if (!decode) {
     throw new AppError("Unauthorized request", 401);
   }
-  const user = await userModel.findById(decode.id);
+  const user = await userModel.findById(decode.userId);
   if (!user) {
     throw new AppError("User no longer exists", 401);
   }

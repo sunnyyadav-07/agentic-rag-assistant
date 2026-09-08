@@ -41,7 +41,7 @@ export const loginService = async (data: LoginBody) => {
   if (!isExisted) {
     throw new AppError("Invalid credentials", 404);
   }
-  const isPasswordCorrect = await isExisted.comparePassword(password);
+  const isPasswordCorrect = isExisted.comparePassword(password);
   if (!isPasswordCorrect) {
     throw new AppError("Invalid credentials", 400);
   }
