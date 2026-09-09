@@ -13,6 +13,11 @@ if (!process.env.GEMINI_SECRET_API_KEY) {
     "GEMINI_SECRET_API_KEY is not defined in environment variables",
   );
 }
+if (!process.env.PINECONE_SECRET_API_KEY) {
+  throw new Error(
+    "PINECONE_SECRET_API_KEY is not defined in environment variables",
+  );
+}
 
 export const config = {
   MONGO_URI: process.env.MONGO_URI as string,
@@ -21,4 +26,5 @@ export const config = {
   JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET as string,
   JWT_ACCESS_SECRET: process.env.JWT_ACCESS_SECRET as string,
   GEMINI_SECRET_API_KEY: process.env.GEMINI_SECRET_API_KEY as string,
+  PINECONE_SECRET_API_KEY: process.env.PINECONE_SECRET_API_KEY as string,
 };

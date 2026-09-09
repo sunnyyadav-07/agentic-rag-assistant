@@ -6,7 +6,7 @@ export async function chunkText(
   fileName: string,
 ): Promise<Chunk[]> {
   const splitter = new RecursiveCharacterTextSplitter({
-    chunkSize: 1500,
+    chunkSize: 1200,
     chunkOverlap: 150,
     separators: ["\n\n", "\n", ". ", " ", ""],
   });

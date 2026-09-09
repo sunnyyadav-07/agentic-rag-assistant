@@ -10,6 +10,9 @@ export async function embedChunks(chunks: Chunk[]): Promise<EmbeddedChunk[]> {
     contents: chunks.map((chunk) => ({
       parts: [{ text: chunk.content }],
     })),
+    config:{
+      outputDimensionality:2048
+    }
   });
 
   return chunks.map((chunk, index) => {
