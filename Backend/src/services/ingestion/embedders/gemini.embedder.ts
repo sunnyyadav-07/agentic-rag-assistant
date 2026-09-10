@@ -11,7 +11,7 @@ export async function embedChunks(chunks: Chunk[]): Promise<EmbeddedChunk[]> {
       parts: [{ text: chunk.content }],
     })),
     config:{
-      outputDimensionality:2048
+      outputDimensionality:1536
     }
   });
 
